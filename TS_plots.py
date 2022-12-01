@@ -4,7 +4,7 @@
 import requests
 import pandas as pd
 from matplotlib import pyplot as plt
-import datetime
+import os
 import numpy as np
 
 # Create GitHub webpage for the Kivu Project
@@ -86,7 +86,12 @@ def xyz2blh(x, y, z):
 
     return latitude, longitude, height
 
-
+datadir='./timeseries'
+plotdir='./plots'
+if not os.path.exists(datadir):
+    os.mkdir(datadir)
+if not os.path.exists(plotdir):
+    os.mkdir(plotdir)
 
 ratesFile=open('TS_rates.txt', 'w')
 ratesFile.write('STAT        Lat      Long   Height      Nvel     Evel     Uvel      Nerr     Eerr     Uerr    NEcor   NUcor   EUcor         Sdate       Edate\n') 
@@ -121,7 +126,7 @@ for stat in Stats:
     gcol='gray'
     
     #creating pandas readable csv from the url
-    file=stat+'.csv'
+    file=os.path.join(datadir,stat+'.csv')
     if GetStats:
         count += 1
         print('Requesting data for: '+stat+'  ['+str(count)+'/'+str(nStats)+']') # usable output
@@ -226,5 +231,5 @@ for stat in Stats:
             ratesFile.write('%s   %8.4f %9.4f %8.1f  %8.1f %8.1f %8.1f  %8.1f %8.1f %8.1f  %7.4f %7.4f %7.4f    %s  %s\n' % 
                             (stat, lat, lon, height, slopes[0], slopes[1],slopes[2], errs[0],  errs[1], errs[2], CorrNE, CorrNU, CorrEU, sdate, edate)) 
         sp+=1
-    f.savefig(stat+'_TS.png', dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)
+    f.savefig(os.path.join(plotdir,stat+'_TS.png'), dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)
 ratesFile.close()
