@@ -131,3 +131,6 @@ dmypy.json
 
 # vim backups
 *~
+
+# programs for now
+/bin
