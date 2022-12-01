@@ -9,6 +9,9 @@ import elevation
 import os
 import pandas as pd
 
+plotdir='./plots'
+if not os.path.exists(plotdir):
+    os.mkdir(plotdir)
 #xmin=28.8; xmax=30; ymin=-2.7;ymax=-1.2
 xmin=29; xmax=29.5; ymin=-2.1;ymax=-1.5
 region=[xmin,xmax,ymin,ymax]
@@ -121,7 +124,7 @@ fig1.basemap(region=region,  # xmin,xmax,ymin,ymax
     map_scale   = '29.40/-1.972/-1.9/10',
     )
 
-fig1.savefig('TS_rates_SONNR.png',  # types include png,jpg,pdf,bmp,tif,eps,kml
+fig1.savefig(os.path.join(plotdir,'TS_rates_SONNR.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
             transparent=False, # transp background for png only
             crop=True, # removes whitespace around fig
             anti_alias=True, # creates smoother plots
