@@ -73,7 +73,7 @@ if not os.path.exists(datadir):
 if not os.path.exists(plotdir):
     os.mkdir(plotdir)
 
-ratesFile=open('TS_rates.txt', 'w')
+ratesFile=open(os.path.join('rates','TS_rates.txt'), 'w')
 ratesFile.write('STAT        Lat      Long   Height      Nvel     Evel     Uvel      Nerr     Eerr     Uerr    NEcor   NUcor   EUcor         Sdate       Edate\n') 
 for stat in Stats:
     # errors

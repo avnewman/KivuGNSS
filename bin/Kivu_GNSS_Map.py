@@ -21,8 +21,8 @@ proj="M0/0/15c"
 libdir=os.path.join(os.getcwd(),'mapdata')
 mapcpt=os.path.join(libdir,'map_gray.cpt')
 DEM=os.path.join(libdir,'Rwanda_DEM.tif') 
-VELS=os.path.join(os.getcwd(),'TS_rates.txt')
-Plate=os.path.join(os.getcwd(),'SO-NNR_itrf2014.txt') # Somalian Plate wrt NNR in ITRF2014 using UNAVCO PMC
+VELS=os.path.join(os.getcwd(),'rates','TS_rates.txt')
+Plate=os.path.join(os.getcwd(),'rates','SO-NNR_itrf2014.txt') # Somalian Plate wrt NNR in ITRF2014 using UNAVCO PMC
 
 def round_up(n, rnd):
     '''
@@ -145,6 +145,6 @@ fig1.savefig(os.path.join(plotdir,'TS_rates_SONNR.png'),  # types include png,jp
             transparent=False, # transp background for png only
             crop=True, # removes whitespace around fig
             anti_alias=True, # creates smoother plots
-            show=True, # display externally too
+            show=False, # display externally too
             dpi=300 #this is default for png
             )
