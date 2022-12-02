@@ -8,3 +8,5 @@
 ./bin/get_rates.py
 #plot vector map
 conda run -n Maps ./bin/Kivu_GNSS_Map.py
+
+./bin/gitpush.sh
