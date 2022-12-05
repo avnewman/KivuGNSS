@@ -38,8 +38,6 @@ def round_down(n, rnd):
     '''
     return math.floor(n / rnd) * rnd
 
-
-
 vels=pd.read_csv(VELS, delim_whitespace=True)
 plate=pd.read_csv(Plate,delim_whitespace=True)
 # remove plate motion
@@ -49,7 +47,7 @@ vels["EPvel"]=vels["Evel"]-plate["Evel"]
 vels["ENcor"]=0-vels["NEcor"]
 data=vels[["Long","Lat","EPvel","NPvel","Eerr","Nerr","ENcor","Uvel","STAT"]] # EP NP are plate removed
 # add legend velocity
-vslat = float(-2.03)
+vslat = float(-2.19)
 vslong = float(29.35)
 velscale = pd.Series([vslong,vslat, 10, 0, 5, 2, 0.4, 10, " "],index=data.columns)
 vdf=velscale.to_frame().T
@@ -61,10 +59,11 @@ data = pd.concat([data,vdf],ignore_index=True)
 # gets proper path declaration independent of OS
 # this will default to the global 90m resolution --way big enough for us
 ## should define product='SRTM3' = 90m data (3arcsec), otherwise will default to 1arcsec
-#elevation.clean()
-#elevation.clip(bounds=(xmin,ymin,xmax,ymax),output=DEM,product='SRTM3')
-#elevation.clean()  # allows us to rerun get command
-#print(pygmt.grdinfo(DEM)) # shows useful information about the grid file
+#   elevation.clean()
+#   #elevation.clip(bounds=(xmin,ymin,xmax,ymax),output=DEM,product='SRTM3')
+#   elevation.clip(bounds=(xmin,ymin,xmax,ymax),output=DEM)
+#   elevation.clean()  # allows us to rerun get command
+#   print(pygmt.grdinfo(DEM)) # shows useful information about the grid file
 
 fig1=pygmt.Figure()
 pygmt.config(MAP_FRAME_TYPE="plain", # no alternating B&W frame
@@ -77,68 +76,103 @@ pygmt.config(MAP_FRAME_TYPE="plain", # no alternating B&W frame
 #fig1.grdimage(DEM,region=region,projection=proj,cmap=mapcpt,shading=True,dpi=300, transparency=60) # Use globe version (all high elev.)
 DEMgrad = pygmt.grdgradient(grid=DEM, azimuth=[0,90], normalize='e.8')
 pygmt.makecpt(cmap="gray",series=[-1,0.5,0.01])
-fig1.grdimage(DEMgrad,region=region,projection=proj,cmap=True,dpi=600, transparency=60) # Use globe version (all high elev.)
 
+# convert kml fault map into something usable (only needed 1x)
+kml=os.path.join(libdir,'doc.kml')  # obtained by unzipping Cindy's kivufaults.kmz
+faults=os.path.join(libdir,'faults.txt')  # obtained by unzipping Cindy's kivufaults.kmz
+if not os.path.exists(faults):  
+    cmd = "gmt kml2gmt "+kml+" > "+faults
+    returned_value = os.system(cmd)  # returns the exit code in unix
+    print('KML2GMT returned value:', returned_value)
+
+# start building plot
+fig1.grdimage(DEMgrad,region=region,projection=proj,
+    cmap=True,
+    dpi=600, 
+    transparency=60)
 
 # remap the national borders as dashed lines
 fig1.coast(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
-    frame=['p','WSen','xa0.1', 'ya.1'], 
+    frame=['p','WseN','xa0.1', 'ya.1'], 
     resolution='f', 
     borders='1/1.2p,150,-.-',
     transparency=10,
     )
+# faults from Cindy
+fig1.plot(data=faults,
+        pen="0.5p,darkred",
+        transparency=10,
+        )
 
 # Legend box -- hardwired :( 
-fig1.plot(x=29.25, y=-2.025, 
-          style="R14/4/0.25", 
-          color="255/255/235", 
-          pen="2p,black",
-         transparency=10,
-         )
+fig1.plot(x=29.25, y=-2.185, 
+        style="R15/4/0.25", 
+        color="255/255/235", 
+        pen="2p,black",
+        transparency=10,
+        no_clip=True,
+        )
 cinc=5  # CPT increment
 pygmt.makecpt(cmap="turbo",  #reverse=True, 
-              continuous=False,
-              series=[round_down(vels.Uvel.min(),cinc),round_up(vels.Uvel.max(),cinc),cinc]
-              #series=[0,60,5]
-             )
+        continuous=False,
+        series=[round_down(vels.Uvel.min(),cinc),round_up(vels.Uvel.max(),cinc),cinc]
+        #series=[0,60,5]
+        )
 
 fig1.plot(x=data.Long,y=data.Lat,
-          style='d0.5c', 
-          cmap=True,
-          pen='0.5,0', 
-          color=data.Uvel,
-          transparency=0)
-
+        no_clip=True,
+        style='d0.5c', 
+        cmap=True,
+        pen='0.5,0', 
+        color=data.Uvel,
+        transparency=0)
 
 fig1.velo(data=data,
-         region=region,
-         pen="0.5p",
-         #zvalue='u', # user-defined before STAT name column in data
-         #cmap=True,
-         spec="e0.2/0.65/10",
-         vector="0.5c+p1p+e"
-         )
+        no_clip=True,
+        region=region,
+        pen="0.5p",
+        #zvalue='u', # user-defined before STAT name column in data
+        #cmap=True,
+        spec="e0.2/0.65/10",
+        vector="0.5c+p1p+e"
+        )
 
 fig1.colorbar(
     #position="jBC", 
-    position="JBC+o0c/-1.1c+w11c/0.2c",
+    position="JBC+o0c/3.6c+w11c/0.2c",
     #box="+gwhite+p2,black", # white fill
     #frame=['x+lvertical [mm/yr]']
     )
 
 fig1.text(
     text=["Vertical velocity [mm/yr]", "Horizontal velocity 10 mm/yr (1 @~s@~)"],
+    no_clip=True,
     x=[29.25,29.25],
-    y=[-2.05,vslat]
+    y=[-2.21,vslat]
     )
-fig1.text(text="Kivu GNSS Sites",x=29.05,y=-1.985, justify="LB", font="12p,Helvetica-Bold,black")
-fig1.text(text="Observations are relative to stable Somalian Plate",x=29.05,y=-2.0, justify="LB", font="10p,Helvetica,black")
-fig1.text(text=vels.Sdate[0] +" to "+vels.Edate[0],x=29.05,y=-2.015, justify="LB", font="10p,Helvetica,black")
+fig1.text(text="Kivu GNSS Sites",
+    x=29.02,y=-2.145, 
+    no_clip=True,
+    justify="LB", 
+    font="12p,Helvetica-Bold,black"
+    )
+fig1.text(text="Observations are relative to stable Somalian Plate",
+    x=29.20,y=-2.145, 
+    no_clip=True,
+    justify="LB", 
+    font="10p,Helvetica,black"
+    )
+fig1.text(text=vels.Sdate[0] +" to "+vels.Edate[0],
+    x=29.20,y=-2.16, 
+    no_clip=True,
+    justify="LB", 
+    font="10p,Helvetica,black"
+    )
 
 fig1.basemap(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
-    map_scale   = '29.40/-1.972/-1.9/10',
+    map_scale   = '29.40/-2.080/-1.9/10',
     )
 
 fig1.savefig(os.path.join(plotdir,'TS_rates_SONNR.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
