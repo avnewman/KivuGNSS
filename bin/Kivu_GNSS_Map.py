@@ -48,7 +48,7 @@ vels["ENcor"]=0-vels["NEcor"]
 data=vels[["Long","Lat","EPvel","NPvel","Eerr","Nerr","ENcor","Uvel","STAT"]] # EP NP are plate removed
 # add legend velocity
 vslat = float(-2.19)
-vslong = float(29.35)
+vslong = float(29.38)
 velscale = pd.Series([vslong,vslat, 10, 0, 5, 2, 0.4, 10, " "],index=data.columns)
 vdf=velscale.to_frame().T
 # Need to reset floats to all be floats again...pita
@@ -91,6 +91,24 @@ fig1.grdimage(DEMgrad,region=region,projection=proj,
     dpi=600, 
     transparency=60)
 
+# Legend box -- hardwired :( 
+fig1.plot(x=29.25, y=-2.185, 
+    style="R15/4/0.25", 
+    color="255/255/235", 
+    pen="2p,black",
+    transparency=10,
+    no_clip=True,
+    )
+
+# add lake 
+fig1.coast(region=region,  # xmin,xmax,ymin,ymax
+    projection=proj,
+    frame=['p','wsen','xa0.1', 'ya.1'], 
+    resolution='f', 
+    lakes=True,
+    water='200/255/255',
+    transparency=60,
+    )
 # remap the national borders as dashed lines
 fig1.coast(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
@@ -101,18 +119,10 @@ fig1.coast(region=region,  # xmin,xmax,ymin,ymax
     )
 # faults from Cindy
 fig1.plot(data=faults,
-        pen="0.5p,darkred",
-        transparency=10,
-        )
+    pen="0.5p,darkred",
+    transparency=10,
+    )
 
-# Legend box -- hardwired :( 
-fig1.plot(x=29.25, y=-2.185, 
-        style="R15/4/0.25", 
-        color="255/255/235", 
-        pen="2p,black",
-        transparency=10,
-        no_clip=True,
-        )
 cinc=5  # CPT increment
 pygmt.makecpt(cmap="turbo",  #reverse=True, 
         continuous=False,
@@ -148,7 +158,7 @@ fig1.colorbar(
 fig1.text(
     text=["Vertical velocity [mm/yr]", "Horizontal velocity 10 mm/yr (1 @~s@~)"],
     no_clip=True,
-    x=[29.25,29.25],
+    x=[29.25,29.28],
     y=[-2.21,vslat]
     )
 fig1.text(text="Kivu GNSS Sites",
@@ -175,10 +185,25 @@ fig1.basemap(region=region,  # xmin,xmax,ymin,ymax
     map_scale   = '29.40/-2.080/-1.9/10',
     )
 
+xmin=29; xmax=29.5; ymin=0;ymax=1
+region=[xmin,xmax,ymin,ymax]
+proj="X15c/4c"
+
+# polygons and lines are always clipped :( need to offset plot
+fig1.plot(x=[29.01, 29.04, 29.06], y=[0.41, 0.47, 0.47],
+    region=region,  
+    projection=proj,
+    yshift=-4.5,
+    pen="0.5p,darkred",
+    transparency=10,
+    )
+fig1.text( text="Mapped Faults", x=29.08, y=0.45, justify="LB" )
+fig1.text( text="(Wood et al., 2015, Smets et al., 2016)", x=29.01, y=0.34, justify="LB",font="8p,Helvetica-Oblique,black" )
+
 fig1.savefig(os.path.join(plotdir,'TS_rates_SONNR.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
-            transparent=False, # transp background for png only
-            crop=True, # removes whitespace around fig
-            anti_alias=True, # creates smoother plots
-            show=False, # display externally too
-            dpi=300 #this is default for png
-            )
+    transparent=False, # transp background for png only
+    crop=True, # removes whitespace around fig
+    anti_alias=True, # creates smoother plots
+    show=False, # display externally too
+    dpi=300 #this is default for png
+    )
