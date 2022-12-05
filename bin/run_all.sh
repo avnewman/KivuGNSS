@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ~/.bashrc
+
 pushd /home/anewman/GPS/Kivu/KivuGNSS
    # get into environment
    #conda activate Maps
