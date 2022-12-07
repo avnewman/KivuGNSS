@@ -68,13 +68,20 @@ def xyz2blh(x, y, z):
 
 datadir='./timeseries'
 plotdir='./plots'
+ratedir='./rates'
 if not os.path.exists(datadir):
     os.mkdir(datadir)
 if not os.path.exists(plotdir):
     os.mkdir(plotdir)
+if not os.path.exists(ratedir):
+    os.mkdir(ratedir)
 
-ratesFile=open(os.path.join('rates','TS_rates.txt'), 'w')
-ratesFile.write('STAT        Lat      Long   Height      Nvel     Evel     Uvel      Nerr     Eerr     Uerr    NEcor   NUcor   EUcor         Sdate       Edate\n') 
+# read expected values
+plateFile=os.path.join(ratedir,'SO-NNR_itrf2014.txt')  # Somalian Plate Motion at sites
+plate = pd.read_csv(plateFile, delim_whitespace=True)
+
+ratesFile=open(os.path.join(ratedir,'Kivu_rates.txt'), 'w')  # new velocity file
+ratesFile.write('STAT        Lat      Long   Height      Nvel     Evel     Nvel-SO  Evel-SO  Uvel      Nerr     Eerr     Uerr    NEcor   NUcor   EUcor         Sdate       Edate\n') 
 for stat in Stats:
     # errors
     csize=2
@@ -102,7 +109,9 @@ for stat in Stats:
     df = pd.read_csv(file, header=8)
     df['Date'] =  pd.to_datetime(df['Datetime'])
     df['NumDate']=pd.to_numeric(df.Date)*xscale # converts to date in NANOseconds
-    
+    # get plate rate for that station
+    plateRow=plate[plate["SITE"]==stat]
+     
     # get xyz coords from header (reread file)
     csv_file=open(file,'r')
     content = csv_file.readlines()
@@ -187,8 +196,14 @@ for stat in Stats:
             #errs=np.sqrt(Corr.diagonal())  not error  since slope is removed
             # do last but plot atop
             ax[0].set_title('Station: '+stat+'  Rates: N=%.1f±%.1f, E=%.1f±%.1f, V=%.1f±%.1f [mm/yr]' % (slopes[0], errs[0],slopes[1], errs[1],slopes[2], errs[2]))
-            ratesFile.write('%s   %8.4f %9.4f %8.1f  %8.1f %8.1f %8.1f  %8.1f %8.1f %8.1f  %7.4f %7.4f %7.4f    %s  %s\n' % 
-                            (stat, lat, lon, height, slopes[0], slopes[1],slopes[2], errs[0],  errs[1], errs[2], CorrNE, CorrNU, CorrEU, sdate, edate)) 
+            ratesFile.write('%s   %8.4f %9.4f %8.1f  %8.1f %8.1f %8.1f %8.1f %8.1f  %8.1f %8.1f %8.1f  %7.4f %7.4f %7.4f    %s  %s\n' % 
+                            (stat, lat, lon, height, 
+                            slopes[0], slopes[1],  # in NNR
+                            slopes[0]-plateRow["Nvel"], slopes[1]-plateRow["Evel"],    # in SO plate ref.
+                            slopes[2],    # vert
+                            errs[0],  errs[1], errs[2],   # errors
+                            CorrNE, CorrNU, CorrEU, 
+                            sdate, edate)) 
         sp+=1
     f.savefig(os.path.join(plotdir,stat+'_TS.png'), dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)
 ratesFile.close()

@@ -21,8 +21,7 @@ proj="M0/0/15c"
 libdir=os.path.join(os.getcwd(),'mapdata')
 mapcpt=os.path.join(libdir,'map_gray.cpt')
 DEM=os.path.join(libdir,'Rwanda_DEM.tif') 
-VELS=os.path.join(os.getcwd(),'rates','TS_rates.txt')
-Plate=os.path.join(os.getcwd(),'rates','SO-NNR_itrf2014.txt') # Somalian Plate wrt NNR in ITRF2014 using UNAVCO PMC
+ratesFile=os.path.join(os.getcwd(),'rates','Kivu_rates.txt')
 
 def round_up(n, rnd):
     '''
@@ -38,21 +37,17 @@ def round_down(n, rnd):
     '''
     return math.floor(n / rnd) * rnd
 
-vels=pd.read_csv(VELS, delim_whitespace=True)
-plate=pd.read_csv(Plate,delim_whitespace=True)
-# remove plate motion
-vels["NPvel"]=vels["Nvel"]-plate["Nvel"]
-vels["EPvel"]=vels["Evel"]-plate["Evel"]
+rates=pd.read_csv(ratesFile, delim_whitespace=True)
 
-vels["ENcor"]=0-vels["NEcor"]
-data=vels[["Long","Lat","EPvel","NPvel","Eerr","Nerr","ENcor","Uvel","STAT"]] # EP NP are plate removed
+rates["ENcor"]=0-rates["NEcor"]
+data=rates[["Long","Lat","Evel-SO","Nvel-SO","Eerr","Nerr","ENcor","Uvel","STAT"]] # EP NP are plate removed
 # add legend velocity
 vslat = float(-2.19)
 vslong = float(29.38)
 velscale = pd.Series([vslong,vslat, 10, 0, 5, 2, 0.4, 10, " "],index=data.columns)
 vdf=velscale.to_frame().T
 # Need to reset floats to all be floats again...pita
-vdf[["Long","Lat","EPvel","NPvel","Eerr","Nerr","ENcor","Uvel"]] = vdf[["Long","Lat","EPvel","NPvel","Eerr","Nerr","ENcor","Uvel"]].apply(pd.to_numeric)
+vdf[["Long","Lat","Evel-SO","Nvel-SO","Eerr","Nerr","ENcor","Uvel"]] = vdf[["Long","Lat","Evel-SO","Nvel-SO","Eerr","Nerr","ENcor","Uvel"]].apply(pd.to_numeric)
 data = pd.concat([data,vdf],ignore_index=True)
 
 ### GET DEM ###
@@ -126,7 +121,7 @@ fig1.plot(data=faults,
 cinc=5  # CPT increment
 pygmt.makecpt(cmap="turbo",  #reverse=True, 
         continuous=False,
-        series=[round_down(vels.Uvel.min(),cinc),round_up(vels.Uvel.max(),cinc),cinc]
+        series=[round_down(rates.Uvel.min(),cinc),round_up(rates.Uvel.max(),cinc),cinc]
         #series=[0,60,5]
         )
 
@@ -173,7 +168,7 @@ fig1.text(text="Observations are relative to stable Somalian Plate",
     justify="LB", 
     font="10p,Helvetica,black"
     )
-fig1.text(text=vels.Sdate[0] +" to "+vels.Edate[0],
+fig1.text(text=rates.Sdate[0] +" to "+rates.Edate[0],
     x=29.20,y=-2.16, 
     no_clip=True,
     justify="LB", 
@@ -200,7 +195,7 @@ fig1.plot(x=[29.01, 29.04, 29.06], y=[0.41, 0.47, 0.47],
 fig1.text( text="Mapped Faults", x=29.08, y=0.45, justify="LB" )
 fig1.text( text="(Wood et al., 2015, Smets et al., 2016)", x=29.01, y=0.34, justify="LB",font="8p,Helvetica-Oblique,black" )
 
-fig1.savefig(os.path.join(plotdir,'TS_rates_SONNR.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
+fig1.savefig(os.path.join(plotdir,'KIVU_GNSS.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
     transparent=False, # transp background for png only
     crop=True, # removes whitespace around fig
     anti_alias=True, # creates smoother plots

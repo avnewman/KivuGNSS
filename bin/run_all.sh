@@ -2,6 +2,7 @@
 
 source ~/.bashrc
 
+# set to run on linux network at GT
 pushd /home/anewman/GPS/Kivu/KivuGNSS
    # get into environment
    #conda activate Maps
