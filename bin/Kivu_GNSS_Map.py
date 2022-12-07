@@ -184,9 +184,10 @@ fig1.text(text=rates.Sdate[0] +" to "+rates.Edate[0],
     font="10p,Helvetica,black"
     )
 
+pygmt.config(MAP_TICK_PEN_PRIMARY='2p')  # thicker line for map_scale
 fig1.basemap(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
-    map_scale   = '29.40/-2.080/-1.9/10',
+    map_scale   = '29.43/-2.070/-1.9/10',
     )
 
 xmin=29; xmax=29.5; ymin=0;ymax=1
