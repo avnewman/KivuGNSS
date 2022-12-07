@@ -25,7 +25,7 @@ TULth=$thumbdir/TUL_th.png
  #   convert $inaction $KIVU $outaction  $KIVUth
  #   convert $inaction $NSF  $outaction  $NSFth
  #   convert $inaction $GT   $outaction  $GTth
-    convert $inaction $TUL   $outaction  $TULth
+ #   convert $inaction $TUL   $outaction  $TULth
 
 convert $BASE \
    $KIVUth -geometry +160+70 -composite \
