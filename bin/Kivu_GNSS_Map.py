@@ -8,6 +8,7 @@ import pygmt
 import elevation
 import os
 import pandas as pd
+import datetime
 import math
 
 plotdir='./plots'
@@ -161,6 +162,12 @@ fig1.text(text="Kivu GNSS Sites",
     no_clip=True,
     justify="LB", 
     font="12p,Helvetica-Bold,black"
+    )
+fig1.text(text=datetime.datetime.now().strftime("%I:%M%p  %d %B %Y"),
+    x=29.02,y=-2.16, 
+    no_clip=True,
+    justify="LB", 
+    font="8p,Helvetica-Oblique"
     )
 fig1.text(text="Observations are relative to stable Somalian Plate",
     x=29.20,y=-2.145, 
