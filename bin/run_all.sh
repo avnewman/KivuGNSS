@@ -13,7 +13,7 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    #plot vector map
    conda run -n Maps ./bin/Kivu_GNSS_Map.py
    # overlay images on map   
-   ./bin/overlay.sh
+   ./bin/overlays.sh
    # send it all to github
    ./bin/gitpush.sh
 popd
