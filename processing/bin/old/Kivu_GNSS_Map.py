@@ -22,7 +22,6 @@ proj="M0/0/15c"
 libdir=os.path.join(os.getcwd(),'processing','mapdata')
 mapcpt=os.path.join(libdir,'map_gray.cpt')
 DEM=os.path.join(libdir,'Rwanda_DEM.tif') 
-BATH=os.path.join(libdir,'kivu_mergedBIG.grd') 
 ratesFile=os.path.join(os.getcwd(),'rates','Kivu_rates.txt')
 
 def round_up(n, rnd):
@@ -66,8 +65,13 @@ fig1=pygmt.Figure()
 pygmt.config(MAP_FRAME_TYPE="plain", # no alternating B&W frame
     FORMAT_GEO_MAP='ddd.xx') # decimal degrees
 
+#pygmt.makecpt(series=[1000,4000,500],  #create a topo cpt just for this range (500-4500m)
+#   continuous=True,
+#   cmap='topo')
+
 #fig1.grdimage(DEM,region=region,projection=proj,cmap=mapcpt,shading=True,dpi=300, transparency=60) # Use globe version (all high elev.)
-#DEMgrad = pygmt.grdgradient(grid=DEM, azimuth=[0,90], normalize='e.8')
+DEMgrad = pygmt.grdgradient(grid=DEM, azimuth=[0,90], normalize='e.8')
+pygmt.makecpt(cmap="gray",series=[-1,0.5,0.01])
 
 # convert kml fault map into something usable (only needed 1x)
 kml=os.path.join(libdir,'doc.kml')  # obtained by unzipping Cindy's kivufaults.kmz
@@ -78,54 +82,28 @@ if not os.path.exists(faults):
     print('KML2GMT returned value:', returned_value)
 
 # start building plot
-#fig1.grdimage(DEMgrad,region=region,projection=proj,
-hcoast=1458
-pygmt.makecpt(series=[1220,hcoast,50],  #create a topo cpt just for this range (500-4500m)
-   continuous=True,
-   #reverse=True,
-   cmap='wysiwyg')
-BATHclip = pygmt.grdclip(BATH, above=[hcoast, 'NaN'])
-BATHgrad = pygmt.grdgradient(grid=BATH, azimuth=[90], normalize='e100')
-fig1.grdimage(BATH,region=region,projection=proj,
-    shading=BATHgrad,
-    cmap=True,
-    dpi=300, 
-    transparency=30)
-fig1.coast(region=region,  # xmin,xmax,ymin,ymax
-    projection=proj,
-    resolution='f', 
-    lakes=True,
-    land='white',
-    )
-
-# Set all grid points < value to NaN
-DEMclip = pygmt.grdclip(DEM, below=[hcoast, 'NaN'])
-DEMgrad = pygmt.grdgradient(grid=DEMclip, azimuth=[0,90], normalize='e0.8')
-pygmt.makecpt(cmap="gray",series=[-1,0.5,0.01])
 fig1.grdimage(DEMgrad,region=region,projection=proj,
-    shading=True,
     cmap=True,
-    dpi=300, 
+    dpi=600, 
     transparency=60)
-
 
 # Legend box -- hardwired :( 
 fig1.plot(x=29.25, y=-2.188, 
     style="R15/4/0.25", 
     color="255/255/235", 
     pen="2p,black",
-    transparency=50,
+    transparency=10,
     no_clip=True,
     )
 
 # add lake 
-#fig1.coast(region=region,  # xmin,xmax,ymin,ymax
-#    projection=proj,
-#    resolution='f', 
-#    lakes=True,
-#    water='200/255/255',
-#    transparency=60,
-#    )
+fig1.coast(region=region,  # xmin,xmax,ymin,ymax
+    projection=proj,
+    resolution='f', 
+    lakes=True,
+    water='200/255/255',
+    transparency=60,
+    )
 # remap the national borders as dashed lines
 fig1.coast(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
@@ -231,7 +209,7 @@ fig1.plot(x=[29.01, 29.04, 29.06], y=[0.41, 0.47, 0.47],
 fig1.text( text="Mapped Faults", x=29.08, y=0.45, justify="LB" )
 fig1.text( text="(Wood et al., 2015, Smets et al., 2016)", x=29.01, y=0.34, justify="LB",font="8p,Helvetica-Oblique,black" )
 
-fig1.savefig(os.path.join(plotdir,'KIVU_GNSS_test.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
+fig1.savefig(os.path.join(plotdir,'KIVU_GNSS.png'),  # types include png,jpg,pdf,bmp,tif,eps,kml
     transparent=False, # transp background for png only
     crop=True, # removes whitespace around fig
     anti_alias=True, # creates smoother plots

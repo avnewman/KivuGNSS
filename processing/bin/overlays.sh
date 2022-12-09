@@ -33,3 +33,6 @@ convert $BASE \
    $GTth -geometry +360+1960 -composite \
    $TULth -geometry +560+1980 -composite \
    $OUT
+
+rm $BASE
+mv $OUT $BASE
