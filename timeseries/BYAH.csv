@@ -3,7 +3,11 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/BYAH/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
+<<<<<<< HEAD
 # Source File: BYAH.cwu.igs14.pos Date Modified: 2022-12-17 00:28:00
+=======
+# Source File: BYAH.cwu.igs14.pos Date Modified: 2022-12-16 00:31:13
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4
 # XYZ Reference Coordinate(igs14): X:  5563168.91749 Y:  3117388.46768 Z:  -183873.45795
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -140,4 +144,7 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2022-12-12T00:00:00Z,5563168.94099,3117388.46550,-183873.20471,0.00845,0.00481,0.00343,0.83100,-0.27500,-0.23700,-1.6627029412,29.2646133209,1596.27553,0.25370,-0.01339,0.01208,0.00242,0.00336,0.00944,0.04904,-0.12963,-0.20843,rapid
 2022-12-13T00:00:00Z,5563168.93273,3117388.45644,-183873.20385,0.00805,0.00483,0.00337,0.84100,-0.26000,-0.21900,-1.6627029365,29.2646132862,1596.26388,0.25422,-0.01726,0.00042,0.00231,0.00331,0.00912,0.04183,-0.02963,-0.19247,rapid
 2022-12-14T00:00:00Z,5563168.94030,3117388.46363,-183873.20729,0.00810,0.00481,0.00341,0.83200,-0.23600,-0.19400,-1.6627029649,29.2646133093,1596.27408,0.25107,-0.01468,0.01064,0.00237,0.00336,0.00914,0.04717,-0.05539,-0.16815,rapid
+<<<<<<< HEAD
 2022-12-15T00:00:00Z,5563168.93148,3117388.45529,-183873.20756,0.00826,0.00484,0.00342,0.83400,-0.28500,-0.23200,-1.6627029704,29.2646132827,1596.26233,0.25046,-0.01765,-0.00112,0.00239,0.00335,0.00930,0.06699,-0.07734,-0.21598,rapid
+=======
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4

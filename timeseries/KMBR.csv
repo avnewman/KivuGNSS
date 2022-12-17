@@ -3,7 +3,11 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KMBR/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
+<<<<<<< HEAD
 # Source File: KMBR.cwu.igs14.pos Date Modified: 2022-12-17 00:28:51
+=======
+# Source File: KMBR.cwu.igs14.pos Date Modified: 2022-12-16 00:31:59
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4
 # XYZ Reference Coordinate(igs14): X:  5561054.12983 Y:  3119771.89606 Z:  -202072.66670
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -138,4 +142,7 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2022-12-12T00:00:00Z,5561054.15207,3119771.89386,-202072.41508,0.00940,0.00511,0.00349,0.84500,-0.37600,-0.32200,-1.8273603615,29.2925858789,1471.79244,0.25208,-0.01280,0.01029,0.00252,0.00338,0.01043,0.10013,-0.20634,-0.29740,rapid
 2022-12-13T00:00:00Z,5561054.15739,3119771.89182,-202072.41758,0.00938,0.00507,0.00345,0.84400,-0.36900,-0.29100,-1.8273603830,29.2925858395,1471.79616,0.24969,-0.01718,0.01401,0.00252,0.00334,0.01039,0.14498,-0.21729,-0.28306,rapid
 2022-12-14T00:00:00Z,5561054.15783,3119771.89091,-202072.42098,0.00939,0.00524,0.00352,0.84200,-0.37800,-0.31000,-1.8273604138,29.2925858304,1471.79621,0.24629,-0.01819,0.01405,0.00258,0.00341,0.01048,0.11255,-0.16107,-0.29649,rapid
+<<<<<<< HEAD
 2022-12-15T00:00:00Z,5561054.16461,3119771.89393,-202072.42229,0.00884,0.00490,0.00342,0.83000,-0.29800,-0.23100,-1.8273604234,29.2925858244,1471.80364,0.24522,-0.01887,0.02148,0.00251,0.00334,0.00982,0.10653,-0.17837,-0.21490,rapid
+=======
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4

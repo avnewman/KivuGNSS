@@ -3,7 +3,11 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/BNZA/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
+<<<<<<< HEAD
 # Source File: BNZA.cwu.igs14.pos Date Modified: 2022-12-17 00:27:57
+=======
+# Source File: BNZA.cwu.igs14.pos Date Modified: 2022-12-16 00:31:11
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4
 # XYZ Reference Coordinate(igs14): X:  5560783.86623 Y:  3120220.77864 Z:  -209865.88661
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -137,4 +141,7 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2022-12-12T00:00:00Z,5560783.89247,3120220.77617,-209865.63549,0.00683,0.00426,0.00322,0.80100,-0.09900,-0.06500,-1.8977889277,29.2972917918,1709.04260,0.25170,-0.01499,0.01335,0.00225,0.00320,0.00773,0.03975,-0.00161,-0.02811,rapid
 2022-12-13T00:00:00Z,5560783.88715,3120220.76782,-209865.63855,0.00685,0.00428,0.00317,0.80600,-0.09900,-0.05400,-1.8977889580,29.2972917498,1709.03398,0.24835,-0.01967,0.00473,0.00224,0.00316,0.00777,0.05901,0.00535,-0.02314,rapid
 2022-12-14T00:00:00Z,5560783.88883,3120220.77234,-209865.63754,0.00698,0.00435,0.00324,0.80600,-0.10800,-0.06900,-1.8977889478,29.2972917778,1709.03763,0.24948,-0.01655,0.00837,0.00227,0.00322,0.00791,0.04751,0.00137,-0.03452,rapid
+<<<<<<< HEAD
 2022-12-15T00:00:00Z,5560783.89064,3120220.76743,-209865.64000,0.00695,0.00436,0.00322,0.80400,-0.09700,-0.05900,-1.8977889702,29.2972917313,1709.03688,0.24700,-0.02172,0.00763,0.00229,0.00321,0.00789,0.04722,0.01015,-0.02302,rapid
+=======
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4

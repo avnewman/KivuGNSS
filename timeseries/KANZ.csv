@@ -3,7 +3,11 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KANZ/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
+<<<<<<< HEAD
 # Source File: KANZ.cwu.igs14.pos Date Modified: 2022-12-17 00:28:49
+=======
+# Source File: KANZ.cwu.igs14.pos Date Modified: 2022-12-16 00:31:58
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4
 # XYZ Reference Coordinate(igs14): X:  5557640.49140 Y:  3128773.19167 Z:  -182085.09461
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -141,4 +145,7 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2022-12-12T00:00:00Z,5557640.50656,3128773.18561,-182084.84008,0.00680,0.00428,0.00321,0.80200,-0.08200,-0.04500,-1.6463442787,29.3781143821,2299.34106,0.25472,-0.01272,0.00292,0.00225,0.00320,0.00772,0.04771,0.00925,-0.01814,rapid
 2022-12-13T00:00:00Z,5557640.50761,3128773.18192,-182084.84311,0.00680,0.00428,0.00316,0.80600,-0.08200,-0.04200,-1.6463443064,29.3781143486,2299.34025,0.25166,-0.01645,0.00211,0.00223,0.00315,0.00772,0.05346,0.01278,-0.01591,rapid
 2022-12-14T00:00:00Z,5557640.50192,3128773.18148,-182084.84504,0.00701,0.00437,0.00324,0.80900,-0.07100,-0.03200,-1.6463443251,29.3781143702,2299.33513,0.24959,-0.01404,-0.00300,0.00227,0.00323,0.00795,0.05410,-0.00001,-0.00445,rapid
+<<<<<<< HEAD
 2022-12-15T00:00:00Z,5557640.50864,3128773.18012,-182084.84541,0.00690,0.00435,0.00321,0.80600,-0.08000,-0.04300,-1.6463443271,29.3781143299,2299.34034,0.24937,-0.01852,0.00219,0.00227,0.00320,0.00784,0.04879,0.01544,-0.01469,rapid
+=======
+>>>>>>> 099ae38ce7affeec5db36148ad1cb7ac37b7a3a4
