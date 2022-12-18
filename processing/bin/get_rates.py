@@ -6,12 +6,15 @@ from matplotlib import pyplot as plt
 import os
 import numpy as np
 import math
+import sys
 
 basedir=os.getcwd()
 # processing and base info
 procdir=os.path.join(basedir,'processing')
 bindir=os.path.join(procdir,'bin')
 mapdir=os.path.join(procdir,'mapdata')
+
+sys.path.append(os.path.join(procdir,'external_programs','euler_pole','euler_pole'))
 # load euler
 #os.chdir(bindir)
 # installed local instance with 'pip install -e . `  inside of euler_pole directory
