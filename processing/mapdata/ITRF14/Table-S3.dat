@@ -1,0 +1,31 @@
+Table S3: The 21 rejected sites and their horizontal velocities, together with their one-sigma formal 
+errors and post-fit residuals
+----------------------------------------------------------------------------------------------------------
+CODE DOMES #   Site Name        Plate       T   Lon     Lat       Ve     Vn     Se     Sn    Re     Rn (*)
+                                                DEG     DEG       ---------------mm/yr---------------
+----------------------------------------------------------------------------------------------------------
+KERG 91201M002 Kerguelen        Antarctica  DP    70.256 -49.351   4.77  -2.47  0.007  0.007 -0.230 -0.950
+CAS1 66011M001 Casey            Antarctica  P    110.520 -66.283   1.51  -9.88  0.006  0.006  0.484 -0.620
+HIL1 50141S001 Hillarys - perth Australia   P    115.739 -31.826  38.86  57.11  0.010  0.009 -0.371  0.804
+HOB2 50116M004 Hobart           Australia   PR   147.439 -42.805  14.15  55.34  0.007  0.006  0.058  0.560
+LOWE 13232M001 Lowestoft        Eurasia     P      1.750  52.473  17.43  15.70  0.006  0.006 -0.506  0.607
+ZEEB 13174M001 Zeebrugge        Eurasia     P      3.208  51.336  17.53  15.36  0.008  0.009  0.042  0.855
+VLIS 13538M001 Vlissingen       Eurasia     P      3.597  51.443  18.40  15.45  0.010  0.011 -0.791  0.752
+GANP 11515M001 Ganovce          Eurasia     P     20.323  49.035  20.64  13.83  0.008  0.009  1.006  0.539
+MIKL 12335M001 Nikolaiev        Eurasia     P     31.973  46.973  23.59  12.10  0.006  0.007  0.513  0.396
+CRAO 12337M002 Simeiz           Eurasia     P     33.991  44.413  24.26  12.21  0.006  0.007  0.552 -0.103
+ARTU 12362M001 Arti             Eurasia     P     58.560  56.430  25.27   6.19  0.004  0.004  0.534 -0.093
+CASC 13909S001 Cascais          Eurasia     P    350.581  38.693  17.86  16.97  0.006  0.006  0.499 -0.304
+SWTG 19158M001 Stornoway        Eurasia     P    353.611  58.208  14.16  17.03  0.009  0.012 -0.962 -0.427
+ABER 13231M001 Aberdeen         Eurasia     P    357.920  57.144  15.04  15.93  0.006  0.007 -0.445  0.572
+MTY2 40518M001 Monterrey        N. America  P    259.687  25.716 -10.61  -3.47  0.010  0.010 -0.105 -1.001
+KWST 49582S001 Key west, florid N. America  P    278.246  24.554 -10.12   3.08  0.007  0.006 -0.366 -0.639
+MIA1 49914S002 Virginia key - m N. America  P    279.840  25.733 -10.04   3.16  0.008  0.007 -0.793 -0.123
+USNA 49908S001 Annapolis        N. America  P    283.521  38.983 -14.82   3.69  0.007  0.007  0.197  0.662
+DNRC 49470M001 Dover, delaware  N. America  P    284.476  39.160 -15.16   4.20  0.007  0.008  0.546  0.519
+PLUZ 31308M001 Puerto de la luz Nubia       P    344.592  28.147  17.11  17.31  0.008  0.008 -0.866  0.330
+HILO 49979S001 Hilo airport     Pacific     P    204.947  19.719 -62.44  35.63  0.008  0.007  0.027 -0.765
+----------------------------------------------------------------------------------------------------------
+(*) T: IERS Space Geodesy Technique Abbreviation: D for DORIS, L for SLR, P for GNSS and R for VLBI.
+Ve, Vn: East and North Velocity components, Se, Sn: East and North Sigmas, Re, Rn: East and North 
+Residuals
