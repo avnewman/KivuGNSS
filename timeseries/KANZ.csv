@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KANZ/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
-# Source File: KANZ.cwu.igs14.pos Date Modified: 2022-12-20 00:23:53
+# Source File: KANZ.cwu.igs14.pos Date Modified: 2022-12-21 00:27:30
 # XYZ Reference Coordinate(igs14): X:  5557640.49140 Y:  3128773.19167 Z:  -182085.09461
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -145,3 +145,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2022-12-16T00:00:00Z,5557640.51082,3128773.17668,-182084.84413,0.00701,0.00447,0.00339,0.80700,-0.06600,-0.03800,-1.6463443155,29.3781142934,2299.34051,0.25065,-0.02259,0.00237,0.00232,0.00338,0.00799,0.03649,0.03471,-0.00540,rapid
 2022-12-17T00:00:00Z,5557640.50362,3128773.17678,-182084.84037,0.00680,0.00435,0.00343,0.80400,-0.08200,-0.05000,-1.6463442831,29.3781143259,2299.33418,0.25423,-0.01897,-0.00396,0.00227,0.00342,0.00775,0.03951,0.03685,-0.02430,rapid
 2022-12-18T00:00:00Z,5557640.50824,3128773.17468,-182084.84477,0.00704,0.00446,0.00350,0.80700,-0.08400,-0.04500,-1.6463443222,29.3781142891,2299.33730,0.24992,-0.02307,-0.00084,0.00232,0.00349,0.00801,0.05150,0.02410,-0.02348,rapid
+2022-12-19T00:00:00Z,5557640.51590,3128773.17748,-182084.84522,0.00687,0.00441,0.00368,0.80100,-0.07900,-0.04500,-1.6463443241,29.3781142773,2299.34536,0.24970,-0.02438,0.00722,0.00232,0.00367,0.00783,0.04279,0.03935,-0.02522,rapid
