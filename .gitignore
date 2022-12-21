@@ -134,3 +134,4 @@ dmypy.json
 
 # programs and libs for now
 processing/
+*.ipynb
