@@ -2,8 +2,8 @@
 # field_unit: ISO 8601 datetime UTC, meters, meters, meters, meters, meters, meters, number, number, number, degrees north, degrees east, meters, meters, meters, meters, meters, meters, meters, number, number, number, UTF-8
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
-# Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KMBR/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleaned&refCoordOptio=from_analysis_center
-# Source File: KMBR.cwu.igs14.pos Date Modified: 2023-01-10 00:30:56
+# Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KMBR/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
+# Source File: KMBR.cwu.igs14.pos Date Modified: 2023-01-11 00:28:56
 # XYZ Reference Coordinate(igs14): X:  5561054.12983 Y:  3119771.89606 Z:  -202072.66670
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -149,3 +149,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-01-06T00:00:00Z,5561054.16162,3119771.89109,-202072.42126,0.00918,0.00504,0.00360,0.82900,-0.31200,-0.24800,-1.8273604153,29.2925858152,1471.79961,0.24612,-0.01989,0.01745,0.00260,0.00351,0.01018,0.10471,-0.19509,-0.23235,rapid
 2023-01-07T00:00:00Z,5561054.16429,3119771.89614,-202072.41526,0.00885,0.00503,0.00351,0.82700,-0.33700,-0.25400,-1.8273603597,29.2925858430,1471.80422,0.25227,-0.01679,0.02206,0.00256,0.00342,0.00988,0.12557,-0.13703,-0.25457,rapid
 2023-01-08T00:00:00Z,5561054.14445,3119771.89321,-202072.41827,0.00887,0.00497,0.00360,0.81900,-0.28100,-0.21900,-1.8273603923,29.2925859073,1471.78559,0.24867,-0.00964,0.00343,0.00261,0.00352,0.00985,0.09111,-0.16496,-0.20321,rapid
+2023-01-09T00:00:00Z,5561054.16017,3119771.90173,-202072.41937,0.00879,0.00503,0.00343,0.82200,-0.29100,-0.23000,-1.8273603971,29.2925859050,1471.80349,0.24814,-0.00990,0.02133,0.00259,0.00335,0.00982,0.08380,-0.12786,-0.20948,rapid

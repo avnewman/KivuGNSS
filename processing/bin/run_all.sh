@@ -7,11 +7,13 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    # get into environment
    #conda activate Maps
    # pull data from UNAVCO
-   conda run -n Maps ./processing/bin/get_UNAVCO_Slns.py
+   #conda run -n Maps ./processing/bin/get_UNAVCO_Slns.py
    # get rates and plot timeseries results
-   conda run -n Maps ./processing/bin/get_rates.py
+   #conda run -n Maps ./processing/bin/get_rates.py
    # run version of the above recreating plots with Unscented Kalman Filter
-   conda run -n Maps ./processing/bin/UKF.py 
+   #conda run -n Maps ./processing/bin/UKF.py 
+   # above processing within a single script now
+   conda run -n Maps ./processing/bin/get_rates2.py
    #plot vector map
    conda run -n Maps ./processing/bin/Kivu_GNSS_Map.py
    # overlay images on map   
