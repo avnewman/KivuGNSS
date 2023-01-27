@@ -15,4 +15,6 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    ./processing/bin/overlays.sh
    # send it all to github
    ./processing/bin/gitpush.sh
+   # cp files to webdir
+   cp ./plots/????_TS.png ./plots/KIVU_GNSS.png ~/html/research/KivuGNSS/ 
 popd
