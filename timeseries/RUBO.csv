@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/RUBO/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
-# Source File: RUBO.cwu.igs14.pos Date Modified: 2023-02-27 00:15:39
+# Source File: RUBO.cwu.igs14.pos Date Modified: 2023-02-28 00:17:57
 # XYZ Reference Coordinate(igs14): X:  5563339.48175 Y:  3116378.22861 Z:  -191092.00986
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -214,3 +214,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-02-23T00:00:00Z,5563339.49178,3116378.21531,-191091.75671,0.00824,0.00466,0.00353,0.79300,-0.03000,-0.01700,-1.7280326990,29.2559454734,1464.99261,0.25310,-0.01651,-0.00538,0.00260,0.00353,0.00910,0.00742,-0.15994,0.03811,rapid
 2023-02-24T00:00:00Z,5563339.49203,3116378.21828,-191091.75412,0.00821,0.00463,0.00323,0.80400,-0.02200,-0.02200,-1.7280326751,29.2559454956,1464.99420,0.25574,-0.01404,-0.00379,0.00252,0.00323,0.00908,-0.01369,-0.15877,0.05119,rapid
 2023-02-25T00:00:00Z,5563339.47839,3116378.21540,-191091.75215,0.00819,0.00466,0.00353,0.79800,0.01100,0.01000,-1.7280326610,29.2559455330,1464.98084,0.25731,-0.00988,-0.01715,0.00256,0.00354,0.00906,-0.01270,-0.14760,0.07663,rapid
+2023-02-26T00:00:00Z,5563339.48854,3116378.21820,-191091.74926,0.00812,0.00462,0.00354,0.79000,-0.01200,-0.00600,-1.7280326321,29.2559455103,1464.99097,0.26051,-0.01240,-0.00702,0.00259,0.00355,0.00897,-0.00257,-0.15187,0.05350,rapid
