@@ -13,8 +13,6 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    conda run -n Maps ./processing/bin/Kivu_GNSS_Map.py
    # overlay images on map   
    ./processing/bin/overlays.sh
-   # send it all to github
-   ./processing/bin/gitpush.sh
    # create small copies of files
    processing/bin/small_plots.sh plots/*png
    # organize plots
@@ -22,6 +20,10 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    mv plots/*TS_sm.png plots/TS/small
    mv plots/*UKF.png plots/UKF/
    mv plots/*UKF_sm.png plots/UKF/small
+
+
+   # send it all to github
+   ./processing/bin/gitpush.sh
    # cp files to webdir
    cp -a ./plots/* ~/html/research/KivuGNSS/plots 
 popd
