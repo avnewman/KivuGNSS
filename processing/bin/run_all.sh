@@ -3,7 +3,7 @@
 source ~/.bashrc
 
 # set to run on linux network at GT
-pushd /home/anewman/GPS/Kivu/KivuGNSS
+#pushd /home/anewman/GPS/Kivu/KivuGNSS
       #conda run -n Maps ./processing/bin/get_UNAVCO_Slns.py
       #conda run -n Maps ./processing/bin/get_rates.py
       #conda run -n Maps ./processing/bin/UKF.py 
@@ -17,6 +17,11 @@ pushd /home/anewman/GPS/Kivu/KivuGNSS
    ./processing/bin/gitpush.sh
    # create small copies of files
    processing/bin/small_plots.sh plots/*png
+   # organize plots
+   mv plots/*TS.png plots/TS/
+   mv plots/*TS_sm.png plots/TS/small
+   mv plots/*UKF.png plots/UKF/
+   mv plots/*UKF_sm.png plots/UKF/small
    # cp files to webdir
-   cp ./plots/*.png ~/html/research/KivuGNSS/ 
+   #cp -a ./plots ~/html/research/KivuGNSS/plots 
 popd
