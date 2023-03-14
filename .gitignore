@@ -135,5 +135,6 @@ dmypy.json
 
 # programs and libs for now
 #processing/
+external_programs/
 old/
 *.ipynb
