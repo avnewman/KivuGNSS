@@ -2,6 +2,7 @@
 import requests
 import pandas as pd
 from matplotlib import pyplot as plt
+from scipy.signal import detrend
 import os
 import numpy as np
 import math
@@ -13,7 +14,6 @@ procdir=os.path.join(basedir,'processing')
 bindir=os.path.join(procdir,'bin')
 mapdir=os.path.join(procdir,'mapdata')
 sys.path.append(os.path.join(procdir,'external_programs','euler_pole','euler_pole'))
-# installed local instance with 'pip install -e . `  inside of euler_pole directory
 from euler_pole import EulerPole as EP
 from euler_pole import cart2sph
 # output directories
@@ -40,9 +40,9 @@ def wcorr(df):
     W=np.array(df[['wN','wE','wU']])
     QW=Q*W
     C=QW.T.dot(QW)/W.T.dot(W)  # covariance
-    CorrNE=C[0][1]/(C[0][0]*C[1][1])
-    CorrNU=C[0][2]/(C[0][0]*C[2][2])
-    CorrEU=C[1][2]/(C[1][1]*C[2][2])
+    CorrNE=C[0][1]/(C[0][0]*C[1][1])**0.5
+    CorrNU=C[0][2]/(C[0][0]*C[2][2])**0.5
+    CorrEU=C[1][2]/(C[1][1]*C[2][2])**0.5
     return CorrNE,CorrNU,CorrEU
 
 def xyz2blh(x, y, z):
@@ -386,6 +386,7 @@ def timeSeriesPlots(Stats,fitDict,analysisCenter,yscale=1000):
                 ax[0].set_title('Kivu Rift Project: '+stat+'  Rates: N=%.1f±%.1f, E=%.1f±%.1f, V=%.1f±%.1f [mm/yr]' % (slopes[0], errs[0],slopes[1], errs[1],slopes[2], errs[2]))
             sp+=1
         f.savefig(os.path.join(plotdir,stat+'_TS.png'), dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)#!/usr/bin/env python
+        plt.close('all')
 
 
 def UKF(Stats,fitDict,analysisCenter,yscale=1000,UKFerr=[3,0.01,5]):
@@ -561,3 +562,186 @@ def UKF(Stats,fitDict,analysisCenter,yscale=1000,UKFerr=[3,0.01,5]):
                 ax[0].set_title('Kivu Rift Project: '+stat+'  Rates: N=%.1f±%.1f, E=%.1f±%.1f, V=%.1f±%.1f [mm/yr]' % (slopes[0], errs[0],slopes[1], errs[1],slopes[2], errs[2]))
             sp+=1
         f.savefig(os.path.join(plotdir,stat+'_UKF.png'), dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)
+        plt.close('all')
+
+
+def commonMode(Stats,commonratesfile,analysisCenter,meanList=None, yscale=1000,**kwargs):
+    """
+    Create a local velocity determination removing the common-mode signal from each daily solution.
+    Data is pulled from either the 'cwu' or 'unr' analysis centers.
+    Requires a Stats list of stations, the name of the commonratesfile, 
+    as well as a scale for plotting [default of yscale=1000 converts m to mm].
+    In addition to writing the ratesfile, process will return a dictionary of fit values useful for futher plotting, etc.
+    """
+    ratesFile=open(os.path.join(ratedir,commonratesfile), 'w')  # new velocity file
+    ratesFile.write('# local Plate motion is defined by data meanList: \n')
+    stringMeanList=" ".join(str(x) for x in meanList)
+    ratesFile.write('# '+stringMeanList+' \n')
+    ratesFile.write('STAT        Lat      Long   Height      Nvel     Evel    Uvel      Nerr     Eerr     Uerr    NEcor   NUcor   EUcor         Sdate       Edate\n') 
+    ratesFile.write('#           °        °      m          mm/yr    mm/yr   mm/yr     mm/yr    mm/yr    mm/yr                             YEAR-MO-DY  YEAR-MO-DY\n') 
+    ratesFile.write('#-------------------------------------------------------------------------------------------------------------------------------------------------\n') 
+    fitDict = {}  # dictionary of fit values for individual stations and components.  this info is returned for plotting later
+
+    # build composite catalog ordered by date
+    dfMaster=pd.DataFrame()
+    for stat in Stats:
+        df=GNSSTimeSeries2Pandas(stat,analysisCenter=analysisCenter) 
+        df['stat']=stat
+        df.set_index('Date', drop=False, inplace=True)
+        df.drop(['Datetime', ' X',' Y',' Z',' Std Dev X',' Std Dev Y',' Std Dev Z',' Corr XY',' Corr XZ',' Corr YZ', 
+        ' N latitude', ' E longitude', ' Height'], axis=1, inplace=True)
+        dfMaster=pd.concat([dfMaster,df])
+    idxold=None
+    dfMaster.sort_index(inplace=True)
+    for idx,row in dfMaster.sort_index().iterrows():
+        if idx != idxold:  # only unique dates
+            if meanList:
+                Nmean=dfMaster.loc[dfMaster['stat'].isin(meanList)].loc[idx,'Npos'].mean()
+                Emean=dfMaster.loc[dfMaster['stat'].isin(meanList)].loc[idx,'Epos'].mean()
+                Umean=dfMaster.loc[dfMaster['stat'].isin(meanList)].loc[idx,'Upos'].mean()
+            else:
+                Nmean=dfMaster['Npos'][idx].mean()
+                Emean=dfMaster['Epos'][idx].mean()
+                Umean=dfMaster['Upos'][idx].mean()
+            # Add means to the master database        
+            dfMaster.loc[idx,'Nmean']=Nmean
+            dfMaster.loc[idx,'Emean']=Emean
+            dfMaster.loc[idx,'Umean']=Umean
+        idxold=idx
+
+    dfMaster['Nposl']=dfMaster['Npos']-dfMaster['Nmean']   
+    dfMaster['Eposl']=dfMaster['Epos']-dfMaster['Emean']   
+    dfMaster['Uposl']=dfMaster['Upos']-dfMaster['Umean']   
+    for stat in Stats:
+        #creating pandas readable csv from the url
+        if analysisCenter == 'unr':
+            lat, lon, height = getUNRlocs(stat)  
+        elif analysisCenter == 'cwu':
+            lat, lon, height = getCWUlocs(stat)  
+        else:
+            print("Could not get coordinates from "+analysisCenter+" ofor "+stat+", setting to defaults.")
+        df=dfMaster.loc[dfMaster['stat'] == stat]
+        sdate=df.Date[0].strftime("%Y-%m-%d")
+        edate=df.Date[len(df)-1].strftime("%Y-%m-%d")
+        xFND=df['NumDate']
+        sp=0
+        slopes=np.zeros(3) # store slopes and errors
+        errs=np.zeros(3)
+        dfFNEU=pd.DataFrame()
+        Comps=('N','E', 'U')
+        for comp in Comps:
+            ycolComp=str(comp+'posl')
+            ycolComp0=str(comp+'pos')
+            wcolComp=str(comp+'err')
+            mcolComp=str(comp+'mean')
+            EcolComp=str(comp+'errl')
+            yF=df[ycolComp]*yscale
+            #wghtF=(df[wcolComp]**-2)/yscale
+            # below is an error estimate using the highly correlated difference between the daily positions and the mean
+            meanErr=detrend(df[mcolComp]).std()  # a singular value
+            compErr=df[wcolComp]  # a series 
+            crosscorr = np.corrcoef(df[ycolComp0],df[mcolComp])[0][1]
+            #  sigma_x-y = sqrt(sigma_x^2 + sigma_y^2 - 2 corr *  sigma_x * sigma_y)
+            Err=(compErr**2 + meanErr**2 -2* crosscorr*compErr*meanErr)**0.5
+            #print("meanErr=",meanErr)
+            #print("compErr=",compErr)
+            #print("crosscorr",crosscorr)
+            wghtF=(Err**-2)/yscale # (1/sigma^2)
+
+            # performing linear fits to data
+            fit,var=np.polyfit(xFND,yF,1,w=wghtF, full=False, cov=True)
+            fitDict[stat+'-'+comp+'-fit'] = fit
+            fitDict[stat+'-'+comp+'-var'] = var
+            fity=np.polyval(fit,xFND)
+            errs[sp]=np.sqrt(var[0][0])
+            slopes[sp]=fit[0]
+            dfFNEU['d'+comp]=(yF-fity) # detrended sln for covariance determination
+            dfFNEU['w'+comp]=(wghtF)   #  weights 
+            #df= pd.concat([df,pd.Series(Err).rename(EcolComp)], axis=1)
+            #print(df[EcolComp].head())
+            dfMaster.loc[dfMaster['stat']==stat,EcolComp]=pd.Series(Err)
+            sp+=1
+        CorrNE,CorrNU,CorrEU=wcorr(dfFNEU)
+        ratesFile.write('%s   %8.4f %9.4f %8.1f  %8.2f %8.2f %8.2f  %8.2f %8.2f %8.2f  %7.4f %7.4f %7.4f    %s  %s\n' % 
+                        (stat, lat, lon, height, 
+                        slopes[0], slopes[1],  slopes[2],    #  N, E, U
+                        errs[0],  errs[1], errs[2],   # errors
+                        CorrNE, CorrNU, CorrEU, 
+                        sdate, edate)) 
+    ratesFile.close()
+    return dfMaster, fitDict
+
+def timeSeriesPlotsCommon(dfMaster,fitDict,analysisCenter,meanList,yscale=1000):
+    """
+    Create displacement timeseries from the data that is pulled from either the 'cwu' or 'unr' analysis centers.
+    Requirs a Stats list of stations, the fit dictionary for those stations (created in linearRates() function), 
+    as well as a scale for plotting [default of yscale=1000 converts m to mm].
+    """
+    # Plotting design options
+    # errors
+    csize=2; elw=0.8; ecol='k' # head size, width, color
+    # markers 
+    mec='k'; mew=0.8; mfmt='o'; msz='4'  #edge color, width, shape, size
+    # final results
+    falpha=1; fcol='blue'  # opacity, color
+    # rapid results
+    ralpha=0.5; rcol='red'  # opacity, color
+    # grid
+    galpha=0.5; gvwidth=0.5; ghwidth=1; gcol='gray'
+    for stat in dfMaster['stat'].unique(): # Stats:
+        df=dfMaster.loc[dfMaster['stat'] == stat]
+        
+        #creating Station (3 component) plots 
+        f, ax = plt.subplots(3, 1, figsize=(14,8),sharey=False, sharex=True) 
+        f.tight_layout(h_pad=0)
+        
+        xF=df['Date']
+        xFND=df['NumDate']
+        sp=0
+        slopes=np.zeros(3) # store slopes and errors
+        errs=np.zeros(3)
+        dfFNEU=pd.DataFrame()
+    
+        Comps=('N','E', 'U')
+        for comp in Comps:
+            ycolComp=str(comp+'posl')
+            wcolComp=str(comp+'errl')
+            yF=df[ycolComp]*yscale
+            yeF=df[wcolComp]*yscale
+            wghtF=df[wcolComp]**-2/yscale
+            
+            # performing linear fits to data
+            fit= fitDict[stat+'-'+comp+'-fit']
+            var= fitDict[stat+'-'+comp+'-var']
+            errs[sp]=np.sqrt(var[0][0])
+            fity=np.polyval(fit,xFND)
+            slopes[sp]=fit[0]
+            dfFNEU['d'+comp]=(yF-fity) # detrended sln for covariance determination
+            dfFNEU['w'+comp]=(wghtF)   #  weights 
+
+            #plot
+            ax[sp].plot(xF, fity)
+            ax[sp].errorbar(x=xF, y=yF, yerr=yeF, 
+                fmt=mfmt, ms=msz, capsize=csize, label='Final', mfc=fcol, mec=mec, mew=mew, 
+                ecolor=ecol, elinewidth=elw, alpha=falpha)
+            #plot labels and legend
+            ax[sp].grid(axis='x', linestyle='-', color=gcol, linewidth=gvwidth, alpha=galpha)
+            ax[sp].axhline(0, linestyle='-', color=gcol,linewidth=ghwidth, alpha=galpha) 
+            if sp == 0 :
+                ax[sp].legend(loc='upper left',fancybox=True, shadow=True)
+                ax[sp].set_ylabel('North [mm]')
+            if sp == 1 :
+                ax[sp].set_ylabel('East [mm]')
+            elif sp == 2 :
+                ax[sp].set_ylabel('Vertical [mm]')
+                ax[sp].set_xlabel('Date')
+                [xmin,xmax,ymin,ymax]=plt.axis()
+                ax[sp].text(xmin+(xmax-xmin)*.005, ymin+(ymax-ymin)*.01, 'Daily positions processed @ '+analysisCenter.upper()+". Removing mean of stations:"+" ".join(str(x) for x in meanList), 
+                    horizontalalignment='left', 
+                    verticalalignment='bottom')
+                # put title atop as a last thing (includes values)
+                ax[0].set_title('Kivu Rift Project: '+stat+'  Rates: N=%.1f±%.1f, E=%.1f±%.1f, V=%.1f±%.1f [mm/yr]' % (slopes[0], errs[0],slopes[1], errs[1],slopes[2], errs[2]))
+            sp+=1
+        f.savefig(os.path.join(plotdir,stat+'_TS_Common.png'), dpi=150, facecolor='white', bbox_inches='tight', pad_inches=0.5)#!/usr/bin/env python
+        plt.close('all')
+
