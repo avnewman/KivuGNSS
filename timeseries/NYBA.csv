@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/NYBA/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
-# Source File: NYBA.cwu.igs14.pos Date Modified: 2023-05-14 02:47:08
+# Source File: NYBA.cwu.igs14.pos Date Modified: 2023-05-14 23:35:18
 # XYZ Reference Coordinate(igs14): X:  5558817.57852 Y:  3125799.75408 Z:  -194912.54780
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -287,3 +287,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-05-10T00:00:00Z,5558817.58964,3125799.75488,-194912.29884,0.00734,0.00461,0.00311,0.82200,-0.06800,-0.05300,-1.7623741664,29.3496479717,2248.87037,0.24915,-0.00475,0.00242,0.00231,0.00310,0.00836,0.01596,0.02642,0.00487,rapid
 2023-05-11T00:00:00Z,5558817.58380,3125799.75821,-194912.29220,0.00707,0.00437,0.00305,0.80400,-0.09000,-0.07700,-1.7623741074,29.3496480234,2248.86671,0.25568,0.00101,-0.00124,0.00230,0.00304,0.00799,0.00683,-0.01591,-0.02125,rapid
 2023-05-12T00:00:00Z,5558817.58894,3125799.75579,-194912.29285,0.00693,0.00427,0.00306,0.81000,-0.10200,-0.07900,-1.7623741123,29.3496479819,2248.87002,0.25513,-0.00362,0.00208,0.00222,0.00304,0.00784,0.02252,-0.01613,-0.03306,rapid
+2023-05-13T00:00:00Z,5558817.59596,3125799.76018,-194912.29404,0.00746,0.00470,0.00319,0.82800,-0.09500,-0.06900,-1.7623741207,29.3496479853,2248.87833,0.25420,-0.00323,0.01038,0.00231,0.00318,0.00851,0.03121,0.03746,-0.02073,rapid
