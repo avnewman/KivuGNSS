@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/BYAH/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
-# Source File: BYAH.cwu.igs14.pos Date Modified: 2023-05-21 02:47:49
+# Source File: BYAH.cwu.igs14.pos Date Modified: 2023-05-21 23:23:56
 # XYZ Reference Coordinate(igs14): X:  5563168.91749 Y:  3117388.46768 Z:  -183873.45795
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -294,3 +294,5 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-05-15T00:00:00Z,5563168.93045,3117388.47447,-183873.20372,0.00852,0.00505,0.00349,0.84700,-0.20800,-0.19700,-1.6627029335,29.2646134375,1596.27069,0.25455,-0.00041,0.00724,0.00238,0.00344,0.00963,-0.00440,-0.04597,-0.14346,rapid
 2023-05-16T00:00:00Z,5563168.92416,3117388.47312,-183873.19980,0.00839,0.00517,0.00348,0.84800,-0.17400,-0.17800,-1.6627028997,29.2646134546,1596.26443,0.25829,0.00149,0.00098,0.00241,0.00344,0.00957,-0.03543,0.02568,-0.11208,rapid
 2023-05-17T00:00:00Z,5563168.92106,3117388.47429,-183873.20223,0.00865,0.00516,0.00345,0.85900,-0.24100,-0.21800,-1.6627029222,29.2646134774,1596.26238,0.25580,0.00402,-0.00108,0.00233,0.00339,0.00982,0.01449,-0.02362,-0.17174,rapid
+2023-05-18T00:00:00Z,5563168.92882,3117388.47520,-183873.20003,0.00859,0.00511,0.00351,0.84100,-0.20300,-0.22000,-1.6627029004,29.2646134504,1596.26952,0.25820,0.00102,0.00607,0.00245,0.00346,0.00971,-0.05665,-0.04391,-0.14564,rapid
+2023-05-19T00:00:00Z,5563168.91806,3117388.46899,-183873.20454,0.00822,0.00481,0.00325,0.84000,-0.17000,-0.17100,-1.6627029445,29.2646134489,1596.25724,0.25334,0.00086,-0.00622,0.00233,0.00321,0.00925,-0.02118,-0.07453,-0.10411,rapid
