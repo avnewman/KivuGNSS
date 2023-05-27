@@ -54,7 +54,8 @@ data=rates[["Long","Lat","Evel-loc","Nvel-loc","Eerr","Nerr","ENcor","Uvel","STA
 # add legend velocity
 vslat = float(-2.19)
 vslong = float(29.38)
-velscale = pd.Series([vslong,vslat, 10, 0, 5, 2, 0.4, 10, " "],index=data.columns)
+velscale = pd.Series([vslong,vslat, 10, 0, 2, 1, 0.3, 10, " "],index=data.columns)
+
 vdf=velscale.to_frame().T
 # Need to reset floats to all be floats again...pita
 vdf[["Long","Lat","Evel-loc","Nvel-loc","Eerr","Nerr","ENcor","Uvel"]] = vdf[["Long","Lat","Evel-loc","Nvel-loc","Eerr","Nerr","ENcor","Uvel"]].apply(pd.to_numeric)
