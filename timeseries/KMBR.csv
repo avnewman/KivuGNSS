@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/KMBR/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
-# Source File: KMBR.cwu.igs14.pos Date Modified: 2023-06-25 23:25:13
+# Source File: KMBR.cwu.igs14.pos Date Modified: 2023-06-26 23:28:11
 # XYZ Reference Coordinate(igs14): X:  5561054.12983 Y:  3119771.89606 Z:  -202072.66670
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -330,3 +330,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-06-22T00:00:00Z,5561054.13594,3119771.90456,-202072.41432,0.00947,0.00516,0.00345,0.84500,-0.38800,-0.34200,-1.8273603571,29.2925860337,1471.78359,0.25255,0.00442,0.00143,0.00255,0.00333,0.01052,0.08489,-0.20203,-0.31053,rapid
 2023-06-23T00:00:00Z,5561054.13893,3119771.90702,-202072.41503,0.00982,0.00533,0.00344,0.85000,-0.39900,-0.35500,-1.8273603625,29.2925860398,1471.78742,0.25197,0.00511,0.00527,0.00259,0.00332,0.01091,0.08507,-0.20730,-0.31867,rapid
 2023-06-24T00:00:00Z,5561054.14136,3119771.90848,-202072.41524,0.00926,0.00505,0.00333,0.84800,-0.37900,-0.33200,-1.8273603635,29.2925860405,1471.79026,0.25185,0.00519,0.00811,0.00247,0.00322,0.01029,0.08664,-0.19947,-0.29886,rapid
+2023-06-25T00:00:00Z,5561054.15067,3119771.90923,-202072.41371,0.00936,0.00514,0.00345,0.84000,-0.37300,-0.32200,-1.8273603472,29.2925860055,1471.79870,0.25365,0.00129,0.01654,0.00256,0.00334,0.01040,0.08779,-0.19012,-0.29439,rapid
