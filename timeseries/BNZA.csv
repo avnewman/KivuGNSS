@@ -3,7 +3,7 @@
 # field_type: string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, string
 # attribution: http://www.unavco.org/community/policies_forms/attribution/attribution.html
 # Request URI: http://ws-prod1.int.unavco.org:9030/gps/data/position/BNZA/v3?analysisCenter=cwu&referenceFrame=igs14&report=long&dataPostProcessing=Uncleanded&refCoordOptio=from_analysis_center
-# Source File: BNZA.cwu.igs14.pos Date Modified: 2023-07-20 23:11:43
+# Source File: BNZA.cwu.igs14.pos Date Modified: 2023-07-21 23:10:38
 # XYZ Reference Coordinate(igs14): X:  5560783.86623 Y:  3120220.77864 Z:  -209865.88661
 # Applied Offset: X: 0 Y: 0 Z: 0
 Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N latitude, E longitude, Height, delta N, delta E, delta U, Std Dev N, Std Dev E, Std Dev U, Corr NE, Corr NU, Corr EU, Solution
@@ -354,3 +354,4 @@ Datetime, X, Y, Z, Std Dev X, Std Dev Y, Std Dev Z, Corr XY, Corr XZ, Corr YZ, N
 2023-07-17T00:00:00Z,5560783.87383,3120220.78742,-209865.62711,0.00677,0.00423,0.00310,0.80800,-0.08700,-0.05400,-1.8977888553,29.2972919619,1709.03158,0.25972,0.00394,0.00232,0.00220,0.00309,0.00768,0.04127,0.00739,-0.01280,rapid
 2023-07-18T00:00:00Z,5560783.88075,3120220.78442,-209865.62663,0.00705,0.00444,0.00315,0.82100,-0.07000,-0.04500,-1.8977888495,29.2972919080,1709.03613,0.26035,-0.00206,0.00687,0.00223,0.00314,0.00803,0.03306,0.03278,0.00574,rapid
 2023-07-19T00:00:00Z,5560783.87965,3120220.78640,-209865.62547,0.00680,0.00427,0.00300,0.81200,-0.08400,-0.05100,-1.8977888390,29.2972919283,1709.03610,0.26151,0.00020,0.00684,0.00219,0.00299,0.00773,0.04264,0.01915,-0.00578,rapid
+2023-07-20T00:00:00Z,5560783.87739,3120220.78539,-209865.62423,0.00717,0.00449,0.00312,0.82100,-0.08000,-0.06000,-1.8977888286,29.2972919304,1709.03359,0.26267,0.00043,0.00434,0.00225,0.00311,0.00816,0.02241,0.02350,-0.00352,rapid
