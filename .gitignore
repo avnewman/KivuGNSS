@@ -138,3 +138,6 @@ dmypy.json
 external_programs/
 old/
 *.ipynb
+
+# mac
+.DS_Store
