@@ -121,7 +121,7 @@ fig1.grdimage(DEMgrad,region=region,projection=proj,
 # Legend box -- hardwired :( 
 fig1.plot(x=29.25, y=-2.188, 
     style="R15/4/0.25", 
-    color="255/255/235", 
+    fill="255/255/235", 
     pen="2p,black",
     transparency=50,
     no_clip=True,
@@ -169,7 +169,7 @@ fig1.plot(x=data.Long,y=data.Lat,
     style='d0.5c', 
     cmap=True,
     pen='0.5,0', 
-    color=data.Uvel,
+    fill=data.Uvel,
     transparency=0)
 fig1.velo(data=data,
     no_clip=True,
@@ -222,18 +222,27 @@ fig1.text(text=rates.Sdate[0] +" to "+rates.Edate[0],
 pygmt.config(MAP_TICK_PEN_PRIMARY='2p')  # thicker line for map_scale
 fig1.basemap(region=region,  # xmin,xmax,ymin,ymax
     projection=proj,
-    map_scale   = '29.43/-2.070/-1.9/10',
+    map_scale   = '29.43/-2.0/-1.9/10',
     )
 
 xmin=29; xmax=29.5; ymin=0;ymax=1
 region=[xmin,xmax,ymin,ymax]
 proj="X15c/4c"
 
+# light logo background 
+fig1.plot(x=29.25 , y=-2.068, 
+    style="R14.8/1.9/0.25", 
+    fill="255", 
+    transparency=50,
+    no_clip=True,
+    )
+
+fig1.shift_origin(yshift=-4.5)
+
 # polygons and lines are always clipped :( need to offset plot
 fig1.plot(x=[29.01, 29.04, 29.06], y=[0.41, 0.47, 0.47],
     region=region,  
     projection=proj,
-    yshift=-4.5,
     pen="0.5p,darkred",
     transparency=10,
     )

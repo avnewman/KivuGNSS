@@ -15,7 +15,10 @@ TUL=/Users/anewman/Documents/figures/LOGOS/Tulane_logo_240x240.png
 KIVUth=$thumbdir/Kivu_th.png
 NSFth=$thumbdir/NSF_th.png
 GTth=$thumbdir/GT_th.png
+PSUth=$thumbdir/PSU_th.png
 TULth=$thumbdir/TUL_th.png
+RMBth=$thumbdir/RMB_th.png
+REMAth=$thumbdir/REMA_th3.png
 
 # only do once
  #   inaction="-verbose -units "PixelsPerInch" -density 100 "
@@ -33,8 +36,11 @@ do
   convert $file \
    $KIVUth -geometry +160+70 -composite \
    $NSFth -geometry +160+1960 -composite \
-   $GTth -geometry +360+1960 -composite \
-   $TULth -geometry +560+1980 -composite \
+   $GTth -geometry  +380+1960 -composite \
+   $PSUth -geometry +600+1980 -composite \
+   $TULth -geometry +820+1980 -composite \
+   $RMBth -geometry +1040+1980 -composite \
+   $REMAth -geometry +1550+1980 -composite \
    $OUT
   rm $file
   mv $OUT $file
