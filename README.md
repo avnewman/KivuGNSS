@@ -12,3 +12,6 @@ GNSS data and results for the KivuRift project
 * With the directory `/rates` are:
   * the file `TS_rates.txt` which contains the velocities in ITRF2014 reference frame.
   * Also included is `SO-NNR_itrf2014.txt` which is the Somalian-Plate motion wrt NNR, at the GNSS sites in ITRF2014 ref frame.
+
+## processing
+This is handled outside of this repository
