@@ -4,8 +4,8 @@ Reference Frame, IGS14
 4-character ID, RUBO
 Station name, RUBO_KIVU_RW2022
 Begin Date, 2022-08-03
-End Date, 2023-09-26
-Release Date, 2023-09-27
+End Date, 2023-09-27
+Release Date, 2023-09-28
 Source file, RUBO.cwu.igs14.pos
 Offset from source file, -243.94 mm North, 22.07 mm East, 0.95 mm Vertical
 Reference position, -1.7280349874 North Latitude, 29.2559456217 East Longitude, 1464.99799 meters elevation
@@ -414,3 +414,4 @@ Date, North (mm), East (mm), Vertical (mm), North Std. Deviation (mm), East Std.
 2023-09-23,24.15, 29.39, -18.92, 3.5, 3.67, 9.28, rapid,
 2023-09-24,30.13, 29.50, -9.32, 3.4, 3.62, 9.38, rapid,
 2023-09-26,32.14, 24.54, -0.71, 3.38, 3.53, 8.77, rapid,
+2023-09-27,31.75, 26.71, 7.48, 3.34, 3.51, 9.01, rapid,

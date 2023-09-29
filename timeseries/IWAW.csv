@@ -4,8 +4,8 @@ Reference Frame, IGS14
 4-character ID, IWAW
 Station name, IWAW_KIVU_RW2022
 Begin Date, 2022-08-05
-End Date, 2023-09-26
-Release Date, 2023-09-27
+End Date, 2023-09-27
+Release Date, 2023-09-28
 Source file, IWAW.cwu.igs14.pos
 Offset from source file, -242.43 mm North, 23.82 mm East, 5.38 mm Vertical
 Reference position, -1.9346042759 North Latitude, 29.1472485385 East Longitude, 1517.43602 meters elevation
@@ -427,3 +427,4 @@ Date, North (mm), East (mm), Vertical (mm), North Std. Deviation (mm), East Std.
 2023-09-23,27.21, 29.32, 14.01, 3.52, 3.6, 9.1, rapid,
 2023-09-24,30.32, 29.10, 15.62, 3.41, 3.58, 9.49, rapid,
 2023-09-26,32.65, 24.16, 16.09, 3.41, 3.49, 8.74, rapid,
+2023-09-27,33.09, 27.68, 28.37, 3.37, 3.47, 8.92, rapid,

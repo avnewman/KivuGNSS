@@ -4,8 +4,8 @@ Reference Frame, IGS14
 4-character ID, KMBR
 Station name, KMBR_KIVU_RW2022
 Begin Date, 2022-08-06
-End Date, 2023-09-26
-Release Date, 2023-09-27
+End Date, 2023-09-27
+Release Date, 2023-09-28
 Source file, KMBR.cwu.igs14.pos
 Offset from source file, -244.65 mm North, 23.00 mm East, 0.82 mm Vertical
 Reference position, -1.8273626406 North Latitude, 29.2925859939 East Longitude, 1471.78216 meters elevation
@@ -426,3 +426,4 @@ Date, North (mm), East (mm), Vertical (mm), North Std. Deviation (mm), East Std.
 2023-09-23,16.42, 36.99, 15.23, 3.57, 3.68, 9.88, rapid,
 2023-09-24,19.80, 40.65, 9.94, 3.49, 3.62, 9.95, rapid,
 2023-09-26,20.66, 30.94, 24.43, 3.45, 3.54, 9.4, rapid,
+2023-09-27,23.22, 37.03, 26.13, 3.43, 3.56, 9.81, rapid,
