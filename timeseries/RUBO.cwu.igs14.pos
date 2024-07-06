@@ -4,7 +4,7 @@ Format Version: 1.1.1
 Station name  : RUBO_KIVU_RW2022
 First Epoch   : 20220803 120000
 Last Epoch    : 20240701 120000
-Release Date  : 20240704 183935
+Release Date  : 20240705 183935
 XYZ Reference position :   5563339.48175  3116378.22861  -191092.00986 (IGS14)
 NEU Reference position :    -1.7280349874   29.2559456217 1464.99799 (IGS14/WGS84)
 Start Field Description
