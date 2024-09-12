@@ -4,7 +4,7 @@ Format Version: 1.1.1
 Station name  : BNZA_KIVU_RW2022
 First Epoch   : 20220807 120000
 Last Epoch    : 20240829 120000
-Release Date  : 20240910 184027
+Release Date  : 20240911 183937
 XYZ Reference position :   5560783.86623  3120220.77864  -209865.88661 (IGS14)
 NEU Reference position :    -1.8977912034   29.2972919265 1709.02926 (IGS14/WGS84)
 Start Field Description
